@@ -1,13 +1,15 @@
 package junsulime.cloud;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-@SpringBootApplication
 public class CloudApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CloudApplication.class, args);
-	}
+    public static void main(String[] args) {
+        new ClassPathXmlApplicationContext("classic.xml");
+    }
+
+    public void setConfigurationProjectName(String projectName) {
+        System.out.println("Project name is " + projectName);
+    }
 
 }
