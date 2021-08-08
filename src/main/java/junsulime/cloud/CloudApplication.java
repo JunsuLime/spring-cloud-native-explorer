@@ -3,21 +3,21 @@ package junsulime.cloud;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.EnvironmentAware;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.PostConstruct;
 
-@PropertySource("some.properties")
 @Configuration
 public class CloudApplication implements EnvironmentAware {
 
     public static void main(String[] args) {
-        new AnnotationConfigApplicationContext(CloudApplication.class);
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+        context.getEnvironment().setActiveProfiles("prod");
+        context.register(CloudApplication.class);
+        context.refresh();
     }
 
     @Bean
@@ -32,6 +32,28 @@ public class CloudApplication implements EnvironmentAware {
         System.out.println("constructor: " + fieldName);
     }
 
+    @Configuration
+    @Profile("prod")
+    @PropertySource("some-prod.properties")
+    public static class ProdConfiguration implements InitializingBean {
+
+        @Override
+        public void afterPropertiesSet() throws Exception {
+            System.out.println("ProdConfiguration initialize");
+        }
+    }
+
+    @Configuration
+    @Profile({"default", "dev"})
+    @PropertySource("some.properties")
+    public static class DefaultConfiguration implements InitializingBean {
+
+        @Override
+        public void afterPropertiesSet() throws Exception {
+            System.out.println("DefaultConfiguration initialize");
+        }
+    }
+
     @Value("${configuration.projectName}")
     public void setProjectName(String fieldName) {
         System.out.println("setter: " + fieldName);
@@ -43,8 +65,9 @@ public class CloudApplication implements EnvironmentAware {
     }
 
     @Bean
-    InitializingBean both(Environment environment, @Value("${configuration.projectName}") String projectName) {
+    InitializingBean which(Environment environment, @Value("${configuration.projectName}") String projectName) {
         return () -> {
+            System.out.println("activeProfiles: " + StringUtils.arrayToCommaDelimitedString(environment.getActiveProfiles()));
             System.out.println("initializingBean(env): " + environment.getProperty("configuration.projectName"));
             System.out.println("initializingBean(property): " + projectName);
         };
