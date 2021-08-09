@@ -1,0 +1,7 @@
+configuration:
+  projectName: Spring Boot
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, configprops
