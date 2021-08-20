@@ -4,4 +4,4 @@ management:
   endpoints:
     web:
       exposure:
-        include: health, configprops, refresh
+        include: health, configprops, refresh, busrefresh, busenv
