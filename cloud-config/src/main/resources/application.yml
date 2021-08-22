@@ -5,3 +5,10 @@ spring.cloud:
         uri: ${GIT_URI}
         username: ${GIT_USERNAME}
         password: ${GIT_PASSWORD}
+
+spring.rabbitmq:
+  host: ${RABBITMQ_HOST}
+  port: ${RABBITMQ_PORT}
+  username: ${RABBITMQ_USERNAME}
+  password: ${RABBITMQ_PASSWORD}
+
