@@ -1,4 +1,4 @@
-package junsulime.cloud;
+package junsulime.cloud.config;
 
 import org.springframework.cloud.bootstrap.config.PropertySourceLocator;
 import org.springframework.core.env.Environment;

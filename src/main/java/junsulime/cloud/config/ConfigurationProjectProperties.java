@@ -1,11 +1,11 @@
-package junsulime.cloud;
+package junsulime.cloud.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
 @ConfigurationProperties("configuration")
-class ConfigurationProjectProperties {
+public class ConfigurationProjectProperties {
 
     private String projectName;
 

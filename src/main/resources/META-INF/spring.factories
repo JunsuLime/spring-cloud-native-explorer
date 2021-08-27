@@ -1,1 +1,1 @@
-org.springframework.cloud.bootstrap.BootstrapConfiguration=junsulime.cloud.FixedPropertySourceLocator
+org.springframework.cloud.bootstrap.BootstrapConfiguration=junsulime.cloud.config.FixedPropertySourceLocator

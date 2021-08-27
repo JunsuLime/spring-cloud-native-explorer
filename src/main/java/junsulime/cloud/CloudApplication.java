@@ -1,5 +1,6 @@
 package junsulime.cloud;
 
+import junsulime.cloud.config.ConfigurationProjectProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.EnvironmentAware;
