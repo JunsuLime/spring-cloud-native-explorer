@@ -1,4 +1,4 @@
-package junsulime.cloud;
+package junsulime.cloud.config;
 
 import org.springframework.cloud.context.scope.refresh.RefreshScopeRefreshedEvent;
 import org.springframework.context.event.EventListener;
