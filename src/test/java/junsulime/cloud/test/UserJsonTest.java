@@ -1,4 +1,4 @@
-package junsulime.cloud;
+package junsulime.cloud.test;
 
 import junsulime.cloud.test.User;
 import org.junit.jupiter.api.BeforeEach;
