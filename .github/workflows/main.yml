@@ -15,6 +15,20 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
+      - name: Setup Java JDK
+        uses: actions/setup-java@v2.3.0
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+          
+      - name: Gradle Wrapper Validation
+        uses: gradle/wrapper-validation-action@v1.0.4
+
+      - name: Gradle Build Action
+        uses: gradle/gradle-build-action@v2.0-beta.1
+        with:
+          arguments: build
+    
       - name: Run a one-line script
         run: echo Hello, world!
         
