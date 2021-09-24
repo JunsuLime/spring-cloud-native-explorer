@@ -13,10 +13,6 @@ public class CloudApplication implements EnvironmentAware {
         SpringApplication.run(CloudApplication.class);
     }
 
-    public CloudApplication(ConfigurationProjectProperties properties) {
-        System.out.println("constructor: " + properties);
-    }
-
     @Override
     public void setEnvironment(Environment environment) {
         System.out.println(environment.getProperty("junsulime.intention"));
