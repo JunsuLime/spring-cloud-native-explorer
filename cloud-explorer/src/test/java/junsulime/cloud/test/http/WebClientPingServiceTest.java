@@ -4,6 +4,7 @@ import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -49,7 +50,7 @@ public class WebClientPingServiceTest {
 
         expectRequestCount(1);
         expectRequest(request -> {
-            assertEquals(request.getPath(), "/");
+            Assertions.assertEquals(request.getPath(), "/");
         });
     }
 
@@ -69,7 +70,7 @@ public class WebClientPingServiceTest {
     }
 
     private void expectRequestCount(int count) {
-        assertEquals(this.server.getRequestCount(), count);
+        Assertions.assertEquals(this.server.getRequestCount(), count);
     }
 
 }
