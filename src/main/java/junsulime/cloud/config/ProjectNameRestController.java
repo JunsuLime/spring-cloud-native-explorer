@@ -12,7 +12,7 @@ public class ProjectNameRestController {
     private final String projectName;
 
     public ProjectNameRestController(@Value("${configuration.projectName}") String projectName) {
-        System.out.println("ProjectNameRestController constructed");
+        System.out.println("ProjectNameRestController constructed " + projectName);
         this.projectName = projectName;
     }
 

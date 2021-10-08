@@ -1,5 +1,8 @@
 package junsulime.cloud.test;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class AccountService {
 
     private final UserService userService;
