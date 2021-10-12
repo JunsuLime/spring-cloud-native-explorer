@@ -1,3 +1,4 @@
 rootProject.name = 'cloud'
 include 'cloud-config'
+include 'cloud-explorer'
 
