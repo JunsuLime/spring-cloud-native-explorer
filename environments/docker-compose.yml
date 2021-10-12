@@ -1,5 +1,18 @@
 version: "3.9"
 services:
+  cloud_config:
+    container_name: "cloud-config"
+    image: "cloud-config:0.0"
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      - GIT_URI=${GIT_URI}
+      - GIT_USERNAME=${GIT_USERNAME}
+      - GIT_PASSWORD=${GIT_PASSWORD}
+      - RABBITMQ_HOST=${RABBITMQ_HOST}
+      - RABBITMQ_PORT=${RABBITMQ_PORT}
+      - RABBITMQ_USERNAME=${RABBITMQ_USERNAME}
+      - RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD}
   rabbitmq:
     container_name: "rabbitmq"
     image: rabbitmq:management
@@ -7,5 +20,5 @@ services:
       - "127.0.0.1:5672:5672"
       - "127.0.0.1:15672:15672"
     environment:
-      - RABBITMQ_DEFAULT_USER=rabbit
-      - RABBITMQ_DEFAULT_PASS=rabbit
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_USERNAME}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD}
