@@ -1,6 +1,0 @@
-spring:
-  application:
-    name: cloud-tester
-  cloud:
-    config:
-      uri: ${vcap.services.configuration-service.credentials.url:http://localhost:8888}
