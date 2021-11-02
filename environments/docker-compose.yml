@@ -14,6 +14,7 @@ services:
       - RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD}
     depends_on:
       - rabbitmq
+      - kafka
   cloud-explorer:
     image: "cloud-explorer:0.0"
     ports:
@@ -22,7 +23,22 @@ services:
       - CONFIG_SERVER=http://cloud-config:8080
     depends_on:
       - rabbitmq
+      - kafka
       - cloud-config
+  zookeeper:
+    container_name: "zookeeper"
+    image: bitnami/zookeeper:latest
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=${ZOOKEEPER_ALLOW_ANONYMOUS_LOGIN}
+  kafka:
+    container_name: "kafka"
+    image: bitnami/kafka:latest
+    depends_on:
+      - zookeeper
+    environment:
+      - KAFKA_ZOOKEEPER_PROTOCOL=${KAFKA_ZOOKEEPER_PROTOCOL}
+      - ALLOW_PLAINTEXT_LISTENER=${KAFKA_ALLOW_PLAINTEXT_LISTENER}
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=${KAFKA_CFG_ZOOKEEPER_CONNECT}
   rabbitmq:
     image: rabbitmq:management
     ports:
