@@ -1,3 +1,3 @@
-./localbuild.sh $1
+./localbuild.sh
 cd environments
 docker-compose --env-file .env.local up
