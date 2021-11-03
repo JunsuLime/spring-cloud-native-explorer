@@ -1,4 +1,4 @@
-./gradlew build $1
+./gradlew build
 
 cd cloud-config
 docker build -t cloud-config:0.0 ./

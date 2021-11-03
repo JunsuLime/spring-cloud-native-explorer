@@ -8,12 +8,11 @@ services:
       - GIT_URI=${GIT_URI}
       - GIT_USERNAME=${GIT_USERNAME}
       - GIT_PASSWORD=${GIT_PASSWORD}
-      - RABBITMQ_HOST=${RABBITMQ_HOST}
-      - RABBITMQ_PORT=${RABBITMQ_PORT}
-      - RABBITMQ_USERNAME=${RABBITMQ_USERNAME}
-      - RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD}
+      - KAFKA_BROKERS=${KAFKA_BROKERS}
+      - KAFKA_DEFAULT_BROKER_PORT=${KAFKA_DEFAULT_BROKER_PORT}
+      - KAFKA_AUTO_CREATE_TOPIC=${KAFKA_AUTO_CREATE_TOPIC}
     depends_on:
-      - rabbitmq
+      - kafka
   cloud-explorer:
     image: "cloud-explorer:0.0"
     ports:
@@ -21,13 +20,20 @@ services:
     environment:
       - CONFIG_SERVER=http://cloud-config:8080
     depends_on:
-      - rabbitmq
+      - kafka
       - cloud-config
-  rabbitmq:
-    image: rabbitmq:management
-    ports:
-      - "127.0.0.1:5672:5672"
-      - "127.0.0.1:15672:15672"
+  zookeeper:
+    image: bitnami/zookeeper:latest
     environment:
-      - RABBITMQ_DEFAULT_USER=${RABBITMQ_USERNAME}
-      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD}
+      - ALLOW_ANONYMOUS_LOGIN=yes
+  kafka:
+    image: bitnami/kafka:latest
+    depends_on:
+      - zookeeper
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_ZOOKEEPER_PROTOCOL=PLAINTEXT
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:${KAFKA_DEFAULT_BROKER_PORT}
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://:${KAFKA_DEFAULT_BROKER_PORT}
+      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true

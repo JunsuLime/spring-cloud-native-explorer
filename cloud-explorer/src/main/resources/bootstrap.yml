@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: cloud-explorer
+  cloud:
+    config:
+      fail-fast: true
+      uri: ${CONFIG_SERVER}
