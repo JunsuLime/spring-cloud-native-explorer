@@ -24,9 +24,7 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-config-server'
     implementation 'org.springframework.cloud:spring-cloud-config-monitor'
 
-    implementation 'org.springframework.cloud:spring-cloud-starter-bus-amqp'
-    // 버전이슈가 있어서 5.5.3으로 고정
-    implementation 'org.springframework.integration:spring-integration-amqp:5.5.3'
+    implementation 'org.springframework.cloud:spring-cloud-starter-bus-kafka'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
