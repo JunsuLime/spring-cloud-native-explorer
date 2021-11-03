@@ -6,8 +6,9 @@ spring.cloud:
         username: ${GIT_USERNAME}
         password: ${GIT_PASSWORD}
 
-spring.rabbitmq:
-  host: ${RABBITMQ_HOST}
-  port: ${RABBITMQ_PORT}
-  username: ${RABBITMQ_USERNAME}
-  password: ${RABBITMQ_PASSWORD}
+spring.cloud.stream:
+  kafka:
+    binder:
+      brokers: ${KAFKA_BROKERS}
+      defaultBrokerPort: ${KAFKA_DEFAULT_BROKER_PORT}
+      autoCreateTopics: ${KAFKA_AUTO_CREATE_TOPIC}

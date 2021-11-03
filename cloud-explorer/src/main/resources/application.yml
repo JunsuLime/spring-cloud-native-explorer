@@ -1,12 +1,3 @@
-spring:
-  application:
-    name: cloud-explorer
-  config:
-    import: configserver:${CONFIG_SERVER}
-  cloud:
-    config:
-      fail-fast: true
-
 configuration:
   projectName: Spring Boot
 management:
