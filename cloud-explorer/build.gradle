@@ -25,7 +25,6 @@ dependencies {
 
     implementation 'org.springframework.cloud:spring-cloud-starter-config'
     implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
-
     implementation 'org.springframework.cloud:spring-cloud-starter-bus-kafka'
 
     runtimeOnly 'com.h2database:h2'
