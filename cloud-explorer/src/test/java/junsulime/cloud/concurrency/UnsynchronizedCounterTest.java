@@ -1,5 +1,6 @@
 package junsulime.cloud.concurrency;
 
+import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Ignore("장비 환경에 따라 결과가 다르게 나올 수 있다.")
 class UnsynchronizedCounterTest {
 
     private static final Logger log = LoggerFactory.getLogger(UnsynchronizedCounterTest.class);
