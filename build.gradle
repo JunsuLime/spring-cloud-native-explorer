@@ -32,3 +32,7 @@ test {
 bootJar {
 	enabled = false
 }
+
+bootBuildImage {
+	enabled = false
+}

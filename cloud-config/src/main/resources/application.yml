@@ -11,4 +11,4 @@ spring.cloud.stream:
     binder:
       brokers: ${KAFKA_BROKERS}
       defaultBrokerPort: ${KAFKA_DEFAULT_BROKER_PORT}
-      autoCreateTopics: ${KAFKA_AUTO_CREATE_TOPIC}
+      autoCreateTopics: ${KAFKA_AUTO_CREATE_TOPIC:false}
