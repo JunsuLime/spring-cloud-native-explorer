@@ -1,24 +1,23 @@
 version: "3.9"
 services:
   cloud-config:
-    image: "cloud-config:0.0"
-    ports:
-      - "127.0.0.1:8000:8080"
+    image: "cloud-config:0.0.1"
     environment:
       - GIT_URI=${GIT_URI}
       - GIT_USERNAME=${GIT_USERNAME}
       - GIT_PASSWORD=${GIT_PASSWORD}
-      - KAFKA_BROKERS=${KAFKA_BROKERS}
-      - KAFKA_DEFAULT_BROKER_PORT=${KAFKA_DEFAULT_BROKER_PORT}
-      - KAFKA_AUTO_CREATE_TOPIC=${KAFKA_AUTO_CREATE_TOPIC}
+      - KAFKA_BROKERS=kafka
+      - KAFKA_DEFAULT_BROKER_PORT=9092
+      - KAFKA_AUTO_CREATE_TOPIC=true
     depends_on:
       - kafka
   cloud-explorer:
-    image: "cloud-explorer:0.0"
+    image: "cloud-explorer:0.0.1"
     ports:
-      - "127.0.0.1:8080:8080"
+      - "8001:8080"
     environment:
       - CONFIG_SERVER=http://cloud-config:8080
+      - SPRING_PROFILES_ACTIVE=cloud,test
     depends_on:
       - kafka
       - cloud-config
@@ -34,6 +33,6 @@ services:
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
       - KAFKA_ZOOKEEPER_PROTOCOL=PLAINTEXT
-      - KAFKA_CFG_LISTENERS=PLAINTEXT://:${KAFKA_DEFAULT_BROKER_PORT}
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://:${KAFKA_DEFAULT_BROKER_PORT}
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://:9092
       - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
