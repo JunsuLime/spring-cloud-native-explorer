@@ -1,2 +1,10 @@
-configuration:
-  projectName: Spring Boot
+spring:
+  cloud:
+    bus:
+      enabled: false
+
+junsulime:
+  cloud:
+    project:
+      name: Test Spring Boot
+      description: Test it!

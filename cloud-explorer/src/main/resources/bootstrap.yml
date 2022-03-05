@@ -1,7 +1,30 @@
 spring:
   application:
     name: cloud-explorer
+
+---
+spring.config:
+  activate:
+    on-profile: local
+
+spring.cloud:
+  config:
+    enabled: false
+  bus:
+    enabled: false
+
+junsulime:
   cloud:
-    config:
-      fail-fast: true
-      uri: ${CONFIG_SERVER}
+    project:
+      name: Local Application
+      description: Do it!
+
+---
+spring.config:
+  activate:
+    on-profile: cloud
+
+spring.cloud:
+  config:
+    fail-fast: true
+    uri: ${CONFIG_SERVER}
