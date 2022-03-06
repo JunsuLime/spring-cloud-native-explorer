@@ -30,10 +30,3 @@ spring.cloud:
   config:
     fail-fast: true
     uri: ${CONFIG_SERVER}
-
-eureka:
-  client:
-    service-url:
-      defaultZone: ${SERVICE_REGISTRY_SERVER}/eureka
-  instance:
-    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}

@@ -3,3 +3,8 @@ management:
     web:
       exposure:
         include: health, configprops, refresh, busrefresh, busenv, info
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+

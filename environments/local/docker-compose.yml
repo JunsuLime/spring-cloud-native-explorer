@@ -21,7 +21,6 @@ services:
       - "8001:8080"
     environment:
       - CONFIG_SERVER=http://cloud-config:8080
-      - SERVICE_REGISTRY_SERVER=http://cloud-service-registry:8761
       - SPRING_PROFILES_ACTIVE=cloud,test
     depends_on:
       - kafka
