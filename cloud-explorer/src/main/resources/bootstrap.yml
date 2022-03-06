@@ -12,6 +12,8 @@ spring.cloud:
     enabled: false
   bus:
     enabled: false
+  discovery:
+    enabled: false
 
 junsulime:
   cloud:
@@ -28,3 +30,10 @@ spring.cloud:
   config:
     fail-fast: true
     uri: ${CONFIG_SERVER}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${SERVICE_REGISTRY_SERVER}/eureka
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}

@@ -1,7 +1,5 @@
-configuration:
-  projectName: Spring Boot
 management:
   endpoints:
     web:
       exposure:
-        include: health, configprops, refresh, busrefresh, busenv
+        include: health, configprops, refresh, busrefresh, busenv, info

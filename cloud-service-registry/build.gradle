@@ -2,11 +2,6 @@ plugins {
     id 'org.springframework.boot'
     id 'io.spring.dependency-management'
     id 'java'
-    id 'application'
-}
-
-application {
-    mainClass = 'junsulime.cloud.CloudConfigApplication'
 }
 
 group 'junsulime'
@@ -21,10 +16,8 @@ ext {
 }
 
 dependencies {
-    implementation 'org.springframework.cloud:spring-cloud-config-server'
-    implementation 'org.springframework.cloud:spring-cloud-config-monitor'
-
-    implementation 'org.springframework.cloud:spring-cloud-starter-bus-kafka'
+    implementation 'javax.annotation:javax.annotation-api:1.3.2'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
 }
 
 dependencyManagement {

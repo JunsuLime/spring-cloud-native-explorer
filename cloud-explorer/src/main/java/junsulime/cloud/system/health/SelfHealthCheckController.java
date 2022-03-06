@@ -12,12 +12,16 @@ public class SelfHealthCheckController {
 
     private final WebClientSelfHealthChecker webClientSelfHealthChecker;
 
+    private final ServiceRegisteredAnyHealthChecker serviceRegisteredAnyHealthChecker;
+
     public SelfHealthCheckController(SelfHealthChecker selfHealthChecker,
                                      RestTemplateSelfHealthChecker restTemplateSelfHealthChecker,
-                                     WebClientSelfHealthChecker webClientSelfHealthChecker) {
+                                     WebClientSelfHealthChecker webClientSelfHealthChecker,
+                                     ServiceRegisteredAnyHealthChecker serviceRegisteredAnyHealthChecker) {
         this.selfHealthChecker = selfHealthChecker;
         this.restTemplateSelfHealthChecker = restTemplateSelfHealthChecker;
         this.webClientSelfHealthChecker = webClientSelfHealthChecker;
+        this.serviceRegisteredAnyHealthChecker = serviceRegisteredAnyHealthChecker;
     }
 
     @GetMapping("/health")
@@ -35,5 +39,8 @@ public class SelfHealthCheckController {
         return webClientSelfHealthChecker.health();
     }
 
-
+    @GetMapping(value = "/health", params = "tool=service-registry")
+    public Object healthWithServiceRegistry() {
+        return serviceRegisteredAnyHealthChecker.health();
+    }
 }
