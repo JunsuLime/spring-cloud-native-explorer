@@ -12,6 +12,8 @@ spring.cloud:
     enabled: false
   bus:
     enabled: false
+  discovery:
+    enabled: false
 
 junsulime:
   cloud:

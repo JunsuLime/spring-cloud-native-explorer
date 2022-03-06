@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: cloud-explorer
   cloud:
     config:
       enabled: false

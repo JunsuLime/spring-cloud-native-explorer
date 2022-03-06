@@ -1,7 +1,10 @@
-configuration:
-  projectName: Spring Boot
 management:
   endpoints:
     web:
       exposure:
-        include: health, configprops, refresh, busrefresh, busenv
+        include: health, configprops, refresh, busrefresh, busenv, info
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
